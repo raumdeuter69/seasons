@@ -11,9 +11,6 @@ import SeasonsDisplay from './Components/SeasonsDisplay';
 //     </div>
 //   );
 // }
-interface props {
-  children?: React.ReactNode | React.ReactNode[];
-  }
 class App extends React.Component<{},{latitude :number | null}>
 {
   constructor (props: {} | Readonly<{}>) {
