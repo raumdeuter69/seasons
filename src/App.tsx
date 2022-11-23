@@ -11,23 +11,26 @@ import SeasonsDisplay from './Components/SeasonsDisplay';
 //     </div>
 //   );
 // }
-class App extends React.Component<{},{latitude :number | null}>
+class App extends React.Component<{},{latitude :number | null,error :string}>
 {
-  constructor (props: {} | Readonly<{}>) {
-// Constructor of React.Component
-    super(props);
-// Only time we do direct assignment to this.state
-this.state={latitude:null};                               
+  state={latitude:null,error: ''}
 
-// API Call
-window.navigator.geolocation.getCurrentPosition((position)=>{
-  this.setState({latitude:position.coords.latitude})
-},
-(err)=>(console.log(err)));
+  componentDidMount(){
+  // API Call
+  window.navigator.geolocation.getCurrentPosition(position=>
+    this.setState({latitude:position.coords.latitude}),
+    err=>(this.setState({error: err.message})));
 }
 
-     render (){
-    return <h1>Hellooo: {this.state.latitude}</h1>
+  render (){
+      if(!this.state.error && this.state.latitude)
+    return <SeasonsDisplay latitude={this.state.latitude} />
+    
+    if(!this.state.error && !this.state.latitude)
+    return <h1>Loading</h1>
+    
+    if(this.state.error && !this.state.latitude)
+    return <h1>Error: {this.state.error}</h1>
   }
 }
 
