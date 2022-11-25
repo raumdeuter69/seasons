@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Beginner Season Predictor App with React and TypeScript
 
-A beginner season predictor app with React and TypeScript
+A beginner season predictor app which predicts seasons based on latitude(GeoLocation API is used)
 ## Available Scripts
 
 In the project directory, you can run:
